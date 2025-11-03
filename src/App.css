@@ -32,7 +32,418 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+/* CUSTOM STYLES */
+/* ROOT VARIABLES */
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --primary-light: #66b2ff;
+  --bg-light: #ffffff;
+  --bg-dark: #1a1a1a;
+  --card-light: #ffffff;
+  --card-dark: #2d2d2d;
+  --text-light: #333333;
+  --text-dark: #e0e0e0;
+  --border-light: #e1e5e9;
+  --border-dark: #404040;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --sidebar-width: 280px;
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.4s ease;
+}
+
+/* GLOBAL STYLES */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-light);
+  background-color: var(--bg-light);
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* IMPROVED CARD STYLES */
+.card {
+  background: var(--card-light);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all var(--transition-medium);
+  box-shadow: 0 2px 8px var(--shadow-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  transform: scaleX(0);
+  transition: transform var(--transition-medium);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px var(--shadow-light);
+  border-color: var(--primary-color);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ENHANCED SIDEBAR */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--bg-light) 0%, #f8f9fa 100%);
+  border-right: 1px solid var(--border-light);
+  transition: all var(--transition-slow);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 123, 255, 0.02) 100%);
+  pointer-events: none;
+}
+
+.sidebar a {
+  color: inherit;
+  padding: 12px 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-fast);
+  border-radius: 8px;
+  margin: 4px 12px;
+  position: relative;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+.sidebar a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 24px;
+  background: var(--primary-color);
+  border-radius: 0 12px 12px 0;
+  transition: width var(--transition-fast);
+}
+
+.sidebar a:hover {
+  background: linear-gradient(90deg, rgba(0, 123, 255, 0.1), rgba(0, 123, 255, 0.05));
+  transform: translateX(4px);
+  color: var(--primary-color);
+}
+
+.sidebar a:hover::before {
+  width: 4px;
+}
+
+.sidebar a.active {
+  background: linear-gradient(90deg, rgba(0, 123, 255, 0.15), rgba(0, 123, 255, 0.08));
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.sidebar a.active::before {
+  width: 4px;
+}
+
+/* IMPROVED BUTTONS */
+.btn-outline-primary {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-outline-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  transition: left var(--transition-medium);
+  z-index: -1;
+}
+
+.btn-outline-primary:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+.btn-outline-primary:hover::before {
+  left: 0;
+}
+
+/* DARK MODE ENHANCEMENTS */
+body.bg-dark {
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #252525 100%);
+  color: var(--text-dark);
+}
+
+body.bg-dark .sidebar {
+  background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
+  border-color: var(--border-dark);
+}
+
+body.bg-dark .sidebar::before {
+  background: linear-gradient(180deg, transparent 0%, rgba(102, 178, 255, 0.05) 100%);
+}
+
+body.bg-dark .card {
+  background: linear-gradient(135deg, var(--card-dark) 0%, #363636 100%);
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+  box-shadow: 0 4px 15px var(--shadow-dark);
+}
+
+body.bg-dark .card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border-color: var(--primary-light);
+}
+
+body.bg-dark .sidebar a:hover {
+  background: linear-gradient(90deg, rgba(102, 178, 255, 0.15), rgba(102, 178, 255, 0.08));
+  color: var(--primary-light);
+}
+
+body.bg-dark .sidebar a:hover::before {
+  background: var(--primary-light);
+}
+
+body.bg-dark .sidebar a.active {
+  background: linear-gradient(90deg, rgba(102, 178, 255, 0.2), rgba(102, 178, 255, 0.1));
+  color: var(--primary-light);
+}
+
+body.bg-dark .sidebar a.active::before {
+  background: var(--primary-light);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    z-index: 1000;
+    transition: left var(--transition-medium);
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .card {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar a {
+    padding: 10px 16px;
+    margin: 2px 8px;
+  }
+
+  .card {
+    border-radius: 12px;
+    padding: 0.75rem;
+  }
+}
+
+/* ACCESSIBILITY IMPROVEMENTS */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.sidebar a:focus,
+.btn-outline-primary:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* LOADING STATES */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--primary-color);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* SCROLL IMPROVEMENTS */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+body.bg-dark ::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+body.bg-dark ::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+}
+
+/* UTILITY CLASSES */
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.bg-dark .glass-effect {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+/* Prevent horizontal scroll and remove extra spacing */
+body {
+  overflow-x: hidden;
+}
+
+/* Optional: make sure sidebar and content stretch properly */
+.sidebar {
+  min-height: 100vh;
+}
+
+/* Sidebar Responsiveness */
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 240px;
+    height: 100%;
+    z-index: 1050;
+    background: var(--bg-light, #fff);
+    transition: left var(--transition-medium, 0.35s ease);
+  }
+
+  body.bg-dark .sidebar {
+    background: #1f1f1f;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  /* Overlay effect when sidebar is open */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  body.sidebar-open::after {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Adjust main content */
+  .col-md-10 {
+    width: 100%;
   }
 }
