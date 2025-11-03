@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/hardik0604/Text_Utils/static/css/main.ea05d681.css",
-    "main.js": "/hardik0604/Text_Utils/static/js/main.c80de0df.js",
-    "static/js/453.96453769.chunk.js": "/hardik0604/Text_Utils/static/js/453.96453769.chunk.js",
-    "index.html": "/hardik0604/Text_Utils/index.html",
-    "main.ea05d681.css.map": "/hardik0604/Text_Utils/static/css/main.ea05d681.css.map",
-    "main.c80de0df.js.map": "/hardik0604/Text_Utils/static/js/main.c80de0df.js.map",
-    "453.96453769.chunk.js.map": "/hardik0604/Text_Utils/static/js/453.96453769.chunk.js.map"
+    "main.css": "/Text_Utils/static/css/main.ea05d681.css",
+    "main.js": "/Text_Utils/static/js/main.48e35efc.js",
+    "static/js/453.96453769.chunk.js": "/Text_Utils/static/js/453.96453769.chunk.js",
+    "index.html": "/Text_Utils/index.html",
+    "main.ea05d681.css.map": "/Text_Utils/static/css/main.ea05d681.css.map",
+    "main.48e35efc.js.map": "/Text_Utils/static/js/main.48e35efc.js.map",
+    "453.96453769.chunk.js.map": "/Text_Utils/static/js/453.96453769.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ea05d681.css",
-    "static/js/main.c80de0df.js"
+    "static/js/main.48e35efc.js"
   ]
 }
